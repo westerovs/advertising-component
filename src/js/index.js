@@ -100,7 +100,7 @@ const component3 = new Component({
     h: 250,
     x: 450,
     y: 130,
-    src: './src/img/cover.jpg',
+    src: 'src/img/cover.jpg',
     alt: 'description...',
     title: 'The long long name Game. Super game',
     badge: true,
