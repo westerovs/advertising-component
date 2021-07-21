@@ -1,5 +1,5 @@
 # TEMPLATE
 🟢RUN:<br>
-https://github.com/westerovs/advertising-component/settings/pages
+https://westerovs.github.io/advertising-component/
 <br>
 <img src="cover.jpg" alt="cover">
