@@ -1,6 +1,6 @@
 class Component {
-    constructor({ node, w, h, x, y, src, alt, badge = false, badgeDesc = false, star = false, title, className, play, demo }) {
-        this.params = { node, w, h, x, y,  src, alt, badge, badgeDesc, star, title, className, play, demo }
+    constructor(params) {
+        this.params = params
     }
 
     // вспомогательная ф-ция для удобного рендера в выбранное место
@@ -11,7 +11,8 @@ class Component {
     }
 
     templateComponent = (params) => {
-        const { w, h, x, y, src, alt, badge, badgeDesc, star, title, className, play, demo } = params
+        const { w, h, x, y, srcImg, href1, href2, alt, badge, badgeDesc, star, title, className, play, demo } = params
+
         const inlineSize = `width: ${ w }px; height: ${ h }px;`
         const inlinePos = `top: ${ y }px; left: ${ x }px;`
         
@@ -22,17 +23,17 @@ class Component {
                   <p class="component__badge ${ badgeDesc ? 'component__badge--desc' : '' }">Microgaming</p>
                   <img
                       class="component__img"
-                      src="${ src }"
+                      src="${ srcImg }"
                       width="${ w }"
                       height="${ h }"
                       alt="${ alt }">
               </div>
 
               <div class="component__controls ${ star ? 'component__controls-star' : ''  }">
-                <h3 class="component__title">${ title }</h3>
-                <div class="component__row-btn">
-                    <a href="#" class="component__btn ${ play ? 'component__btn--play' : '' }">Play</a>
-                    <a href="#" class="component__btn ${ demo ? 'component__btn--demo' : '' }">Demo</a>
+                  <h3 class="component__title">${ title }</h3>
+                  <div class="component__row-btn">
+                      <a href="${ href1 }" class="component__btn ${ play ? 'component__btn--play' : '' }">Play</a>
+                      <a href="${ href2 }" class="component__btn ${ demo ? 'component__btn--demo' : '' }">Demo</a>
                 </div>
               </div>
             </div>`
@@ -40,10 +41,6 @@ class Component {
 
     createComponent = () => {
         this.render(this.params.node, this.templateComponent(this.params))
-    }
-
-    init = () => {
-        this.createComponent()
     }
     
     destroy = () => {
@@ -66,7 +63,9 @@ const component = new Component({
     h: 250,
     x: 0,
     y: 20,
-    src: './src/img/cover.jpg',
+    srcImg: './src/img/cover.jpg',
+        href1: '#',
+    href2: '#',
     alt: 'description...',
     title: 'The long long name Game. Super game',
     badge: true,
@@ -76,14 +75,15 @@ const component = new Component({
     play: true,
     demo: true
 })
-
 const component2 = new Component({
     node: wrapper,
     w: 300,
     h: 250,
     x: 100,
     y: 320,
-    src: './src/img/cover.jpg',
+    srcImg: './src/img/cover.jpg',
+        href1: '#',
+    href2: '#',
     alt: 'description...',
     title: 'The long long name Game. Super game',
     badge: true,
@@ -93,14 +93,15 @@ const component2 = new Component({
     play: true,
     demo: true
 })
-
 const component3 = new Component({
     node: wrapper,
     w: 400,
     h: 250,
     x: 450,
     y: 130,
-    src: 'src/img/cover.jpg',
+    srcImg: './src/img/cover.jpg',
+    href1: '#',
+    href2: '#',
     alt: 'description...',
     title: 'The long long name Game. Super game',
     badge: true,
@@ -111,8 +112,8 @@ const component3 = new Component({
     demo: true
 })
 
-component.init()
-component2.init()
-component3.init()
+component.createComponent()
+component2.createComponent()
+component3.createComponent()
 
 // setTimeout(() => component3.destroyAll(), 1000)
